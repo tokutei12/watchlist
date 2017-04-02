@@ -9,6 +9,7 @@
 import UIKit
 import AFNetworking
 import MBProgressHUD
+import ChameleonFramework
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -31,8 +32,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func networkRequest(requestCompleteCallback: @escaping () -> Void) {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        print(endpoint)
-        print("https://api.themoviedb.org/3/movie/\(endpoint!)/?api_key=\(apiKey)")
         let url = URL(string:"https://api.themoviedb.org/3/movie/\(endpoint!)/?api_key=\(apiKey)")
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -47,6 +46,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             with: request as URLRequest,
             completionHandler: { (data, response, error) in
                 if let data = data {
+                    self.errorView.isHidden = true
+                    self.errorView.frame.size.height = 0
+                    
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
                         
@@ -84,6 +86,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
 

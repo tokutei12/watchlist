@@ -20,11 +20,16 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: movieInfoView.frame.origin.y + movieInfoView.frame.size.height)
-        
+
         titleLabel.text = movie["title"] as? String
         overviewLabel.text = movie["overview"] as? String
+        print(self.movieInfoView.frame.origin.y)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.movieInfoView.frame.origin.y = 350
+        })
+        print(self.movieInfoView.frame.origin.y)
+        print(self.movieInfoView.frame.size.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.size.width, height: self.movieInfoView.frame.origin.y + self.movieInfoView.frame.size.height)
 
         overviewLabel.sizeToFit()
         
