@@ -32,7 +32,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories. There is a bit of waiting at the network error stage, as I wait for my computer to reconnect to the internet. 
 
-<img src='http://i.imgur.com/t2p9KzM.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='/watchlist.gif?raw=true' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
